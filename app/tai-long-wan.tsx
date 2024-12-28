@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { router } from 'expo-router';
 
 const TaiLongWan = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.photosContainer}>
@@ -32,7 +35,7 @@ const TaiLongWan = () => {
         </TouchableOpacity>
       </View>
       <Text style={styles.duration}>30 min</Text>
-      <TouchableOpacity style={styles.directionsButton}>
+      <TouchableOpacity style={styles.directionsButton} onPress={() => router.push('/Directions')}>
         <Text style={styles.directionsText}>Get Directions</Text>
       </TouchableOpacity>
     </ScrollView>
