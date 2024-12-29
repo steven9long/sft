@@ -20,8 +20,8 @@ export const PlacesList = () => {
       imageUri: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRPJRXldwNs9_qd1rh1X0ymUHPkN36jnzHiC6ULHPI0ttUfUNT2VDDMo2qKfsaHltRoDADOuoVUPL6bnlqI235X00HOIPwaevU_rEdgGw",
       title: "Kowloon Park",
       subtitle: "Tsim Sha Tsui, Hong K",
-      points: "+ 🌳15,000",
-      rating: "4.8",
+      points: "+ 🌳10,000",
+      rating: "4.6",
       categories: ["Parks", "Historical"],
     },
     {

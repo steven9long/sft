@@ -45,17 +45,16 @@ export default function TabLayout() {
             ),
           }}
         />
-        {/* Profile Tab */}
+        {/* Collection Tab */}
         <Tabs.Screen
-          name="Profile"
+          name="collection"
           options={{
             title: '',
             tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="person.crop.circle.fill" color={color} />
+              <IconSymbol size={28} name="bookmark.fill" color={color} />
             ),
-          }}
-        />
-      </Tabs>
+          }}/>
+          </Tabs>
     </View>
   );
 }

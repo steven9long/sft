@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, Dimensions, Image, Text } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import Carousel from 'react-native-reanimated-carousel';
+import TAnimationStyle from 'react-native-reanimated-carousel';
+import { interpolate, Extrapolation } from 'react-native-reanimated';
 
 const { width } = Dimensions.get('window');
 
@@ -32,6 +34,58 @@ const data = [
   },
 ];
 
+const itemSize = width ;
+const centerOffset = width / 2 - itemSize / 2;
+const sideItemCount = 3;
+const sideItemWidth = (width - itemSize) / sideItemCount;
+
+const animationStyle = React.useCallback(
+  (value: number) => {
+    "worklet";
+
+    const itemOffsetInput = new Array(sideItemCount * 2 + 1)
+      .fill(null)
+      .map((_, index) => index - sideItemCount);
+
+    const itemOffset = interpolate(
+      value,
+      itemOffsetInput,
+      itemOffsetInput.map((item) => {
+        if (item < 0) {
+          return (-itemSize + sideItemWidth) * Math.abs(item);
+        }
+
+        if (item > 0) {
+          return (itemSize - sideItemWidth) * (Math.abs(item) - 1);
+        }
+
+        return 0;
+      }) as number[]
+    );
+
+    const translate =
+      interpolate(value, [-1, 0, 1], [-itemSize, 0, itemSize]) + centerOffset - itemOffset;
+
+    const width = interpolate(
+      value,
+      [-1, 0, 1],
+      [sideItemWidth, itemSize, sideItemWidth],
+      Extrapolation.CLAMP
+    );
+
+    return {
+      transform: [
+        {
+          translateX: translate,
+        },
+      ],
+      width,
+      overflow: 'hidden' as 'hidden',
+    };
+  },
+  [centerOffset, itemSize, sideItemWidth, sideItemCount]
+);
+
 const App: React.FC = () => {
   const routeCoordinates = [
     { latitude: 22.42107860309786, longitude: 114.38603013107799 },
@@ -42,7 +96,7 @@ const App: React.FC = () => {
   ];
 
   const renderCarouselItem = ({ item }: { item: typeof data[0] }) => (
-    <View style={styles.card}>
+    <View style={[styles.card, { width: "100%" }]}>
       <Image source={{ uri: item.image }} style={styles.image} />
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.description}>{item.description}</Text>
@@ -78,13 +132,21 @@ const App: React.FC = () => {
 
       {/* Carousel */}
       <Carousel
-        loop
-        width={width}
+        width={itemSize}
         height={300}
+        style={{
+          width: width,
+          height: 300,
+          backgroundColor: "white",
+        }}
+        loop
+        windowSize={Math.round(data.length / 2)}
+        scrollAnimationDuration={1500}
         autoPlay
+        autoPlayInterval={5000}
         data={data}
-        scrollAnimationDuration={1000}
         renderItem={renderCarouselItem}
+        customAnimation={animationStyle}
       />
     </View>
   );

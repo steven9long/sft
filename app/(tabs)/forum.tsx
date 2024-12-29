@@ -8,10 +8,10 @@ const Forum = () => {
   const [view, setView] = useState('Blog'); // State to toggle between Blog and Events
 
   const events = [
-    { date: 'FEB 7', title: 'Handmade soap workshop', tags: ['Workshop', 'Organic'] },
-    { date: 'FEB 16', title: 'Beach Clean-up: Come help our planet Earth!', tags: ['Volunteer'] },
-    { date: 'FEB 23', title: 'Farmers Market', tags: ['Organic'] },
-    { date: 'FEB 25', title: 'Tree Planting with us!', tags: ['Volunteer', 'Organic'] },
+    { date: 'FEB 7', title: 'Handmade soap workshop', tags: ['Workshop', 'Organic'], organization: 'Eco Club' },
+    { date: 'FEB 16', title: 'Beach Clean-up: Come help our planet Earth!', tags: ['Volunteer'], organization: 'Green Warriors' },
+    { date: 'FEB 23', title: 'Farmers Market', tags: ['Organic'], organization: 'Local Farmers' },
+    { date: 'FEB 25', title: 'Tree Planting with us!', tags: ['Volunteer', 'Organic'], organization: 'Tree Lovers' },
   ];
 
   const renderBlog = () => (
@@ -26,7 +26,7 @@ const Forum = () => {
     <ScrollView style={styles.contentContainer}>
       <Text style={styles.heading}>Events</Text>
       {events.map((event, index) => (
-        <EventCard key={index} date={event.date} title={event.title} tags={event.tags} />
+        <EventCard key={index} date={event.date} title={event.title} tags={event.tags} organization={event.organization} />
       ))}
     </ScrollView>
   );
