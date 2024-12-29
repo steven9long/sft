@@ -18,24 +18,105 @@ const { width } = Dimensions.get("window");
 export default function Collection() {
   const data = {
     animals: [
-      {
-        name: "Giant Panda",
-        scientificName: "Ailuropoda melanoleuca",
-        description:
-          "The giant panda is a bear native to south-central China. It is known for its striking black-and-white coat and reliance on bamboo for food.",
-        reference: "(WWF. 'Giant Panda.' Accessed December 14, 2024.)",
-        uri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTT3m33ZWK8oL30U9kUlzAbrqreM9UStFMhoIGYhOXT-V-vBImTQj_or8xeJXBCud2UxKAUvQzR3DuZCOPRMtDRTe9qyZSBbTAlrEiXVPg",
-      },
-      {
-        name: "Bottlenose Dolphin",
-        scientificName: "Tursiops truncatus",
-        description:
-          "Bottlenose dolphins are highly intelligent marine mammals known for their playful behavior and use of echolocation.",
-        reference:
-          "(National Geographic. 'Bottlenose Dolphin.' Accessed December 14, 2024.)",
-          uri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTT3m33ZWK8oL30U9kUlzAbrqreM9UStFMhoIGYhOXT-V-vBImTQj_or8xeJXBCud2UxKAUvQzR3DuZCOPRMtDRTe9qyZSBbTAlrEiXVPg",
-      },
-    ],
+        {
+          name: "Giant Panda",
+          scientificName: "Ailuropoda melanoleuca",
+          description:
+            "The giant panda is a bear native to south-central China. It is known for its striking black-and-white coat and reliance on bamboo for food.",
+          reference: "(WWF. 'Giant Panda.' Accessed December 14, 2024.)",
+          uri: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Grosser_Panda.JPG",
+        },
+        {
+          name: "Rhesus Macaque",
+          scientificName: "Macaca mulatta",
+          conservationStatus: "Least Concern",
+          description:
+            "Hong Kong's wild monkey population, around 2,000 in 30 troops, includes Rhesus Macaques, Long-tailed Macaques, and their hybrids. They inhabit various environments and primarily feed on plant materials. Human feeding has increased their population and led to fearless behaviors, causing them to snatch food from visitors' plastic bags.",
+          reference:
+            "Agriculture, Fisheries and Conservation Department. 'Wild Monkeys in Hong Kong.' Accessed December 14, 2024.",
+          uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Davidraju_img15%28Macaca_mulatta%29_Rhesus_macaque.jpg/220px-Davidraju_img15%28Macaca_mulatta%29_Rhesus_macaque.jpg",
+        },
+        {
+          name: "Hong Kong Oyster",
+          scientificName: "Magallana hongkongensis",
+          conservationStatus: "Not Evaluated",
+          description:
+            "Lau Fau Shan in Deep Bay, with over 700 years of history, is ideal for oyster farming. Oyster farmers use nearshore posts for baby oysters, transferring them to rafts for growth. The oysters are sold live, as golden dried oysters, dried oysters, or processed into oyster sauce.",
+          reference:
+            "Biodiversity Information Hub. 'Species Named After Hong Kong.' Accessed December 14, 2024.",
+          uri: "https://bih.gov.hk/filemanager/fastfacts/en/upload/21/live_7-Hong-Kong-Oyster-1.jpg",
+        },
+        {
+          name: "Great Blue Spotted Mudskipper",
+          scientificName: "Boleophthalmus pectinirostris",
+          conservationStatus: "N/A",
+          description:
+            "At low tide, the Great Blue Spotted Mudskipper searches for food on mudflats. Along the Mangrove Boardwalk in Wetland Park, you can find two species: the larger Great Blue Spotted Mudskipper with distinctive blue spots and the Shuttles Hoppfish (Periophthalmus modestus).",
+          reference:
+            "Hong Kong Wetland Park. 'Boleophthalmus pectinirostris.' Accessed December 14, 2024.",
+          uri: "https://www.ecologyasia.com/images-gh/gt-blue-spot-mudskipper_0245a.jpg",
+        },
+        {
+          name: "Chinese White Dolphin",
+          scientificName: "Sousa chinensis",
+          conservationStatus: "Vulnerable",
+          description:
+            "The Chinese white dolphin is beloved by Hong Kong people for its pink coloring and friendly nature. In Hong Kong waters, these dolphins prefer to stay close to the shore, especially on the western coast of the Pearl River Estuary.",
+          reference:
+            "WWF Hong Kong. 'Chinese White Dolphin.' Accessed December 14, 2024.",
+          uri: "https://www.wildwondersofchina.com/img-get2/I0000ntmr24Rz0o4/fit=1000x750/MLU-20160629-095402-13US.jpg",
+        },
+        {
+          name: "Eurasian Otter",
+          scientificName: "Lutra lutra",
+          conservationStatus: "Near Threatened",
+          description:
+            "Hong Kong is home to the Eurasian otter (Lutra lutra), one of 13 otter species worldwide. These otters inhabit streams, rivers, ponds, reservoirs, wetlands, irrigation channels, and coastal regions, and rest in dry habitats like earth tunnels, boulder piles, tree roots, and banks.",
+          reference:
+            "WWF Hong Kong. 'Mai Po Wetlands - Mammals.' Accessed December 14, 2024.",
+          uri: "https://www.birdwords.co.uk/wp-content/uploads/2019/11/Eurasian-Otter-Lutra-lutra.jpg",
+        },
+        {
+          name: "Hong Kong Cascade Frog",
+          scientificName: "Amolops hongkongensis",
+          conservationStatus: "Endangered",
+          description:
+            "The Hong Kong Cascade Frog, the only native frog named after Hong Kong, was discovered in Tai Mo Shan in 1950 and described as a new species in 1951. It is also found in southern Guangdong.",
+          reference:
+            "Biodiversity Information Hub. 'Species Named After Hong Kong.' Accessed December 14, 2024.",
+          uri: "https://inaturalist-open-data.s3.amazonaws.com/photos/45578937/large.jpg",
+        },
+        {
+          name: "Black-faced Spoonbill",
+          scientificName: "Platalea minor",
+          conservationStatus: "Endangered",
+          description:
+            "The Black-faced Spoonbill is a large white wading bird with a distinctive spoon-shaped beak and black facial skin. It migrates southward to wintering grounds and feeds on fish and shrimps in shallow coastal waters.",
+          reference:
+            "WWF Hong Kong. 'Chinese White Dolphin.' Accessed December 14, 2024.",
+          uri: "https://www.wetlandpark.gov.hk/filemanager/photos/public/Ecological/5_Birds/09-Black-faced_Spoonbill.jpg",
+        },
+        {
+          name: "Chinese Pangolin",
+          scientificName: "Manis pentadactyla Linnaeus",
+          conservationStatus: "Critically Endangered",
+          description:
+            "Among the eight pangolin species worldwide, Hong Kong hosts the Chinese Pangolin. This nocturnal species inhabits woodlands, digs burrows for daytime rest, and uses a long sticky tongue to feed on ants and termites. Rare and elusive, encountering one in the wild is a privilege.",
+          reference:
+            "Biodiversity Information Hub. 'Chinese Pangolin.' Accessed December 14, 2024.",
+          uri: "https://taieol.tw/files/muse_taieol/muse_styles/w1024/mcode/13038682a86c78935d374791a10b10d5.jpg?itok=HQWhjGxJ",
+        },
+        {
+          name: "Hong Kong Clubtail",
+          scientificName: "Leptogomphus hongkongensis",
+          conservationStatus: "Least Concern",
+          description:
+            "The Hong Kong Clubtail, one of 130 dragonfly species in the city, is hemimetabolous, transitioning from nymph to adult without a pupal phase. Nymphs are fierce freshwater predators, transforming into beautiful adult dragonflies during emergence. Named after Hong Kong, they highlight the city's rich biodiversity.",
+          reference:
+            "Biodiversity Information Hub. 'Species Named After Hong Kong.' Accessed December 14, 2024.",
+          uri: "https://bih.gov.hk/Multimedia/multimedia-dataset/4/11537/11537_t.jpg",
+        },
+      ],
     plants: [
         {
           name: "Hong Kong Orchid Tree",
@@ -110,15 +191,53 @@ export default function Collection() {
           uri: "https://www.herbarium.gov.hk/filemanager/en/content_136/89.jpg",
         },
       ],
-    insects: [{
-        name: "Hong Kong Orchid Tree",
-        scientificName: "Bauhinia blakeana",
-        description:
-          "The Hong Kong Orchid Tree, first discovered in the 1880s in Pok Fu Lam, is known for its large, attractive flowers and is the city flower of Hong Kong. It is infertile and propagated through grafting. Named after Sir Henry Arthur Blake, it is a hybrid between Bauhinia purpurea and Bauhinia variegata.",
-        reference:
-          "(Greening, Landscape & Tree Management Section of the Development Bureau. 'Hong Kong Orchid Tree.' Accessed December 14, 2024.)",
-          uri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTT3m33ZWK8oL30U9kUlzAbrqreM9UStFMhoIGYhOXT-V-vBImTQj_or8xeJXBCud2UxKAUvQzR3DuZCOPRMtDRTe9qyZSBbTAlrEiXVPg",
-      },],
+      insects: [
+        {
+          name: "Common Birdwing",
+          scientificName: "Troides helena",
+          conservationStatus: "Least Concern",
+          description:
+            "Common Birdwing has a body that is tinted with red and golden colours, together with its golden black wings, making it a gorgeous dancer when in flight. It is one of the largest butterfly species in the territory. The species looks like a little bird because of its large wings. This is why its common name is called 'birdwing'.",
+          reference: "https://bih.gov.hk/en/fast-facts/iconic-species/index-id-12.html",
+          uri: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRtXUvMncEzcmpAHCOCkdL204R7lVn0SYnYdnZwgeyA_pe4XHlHQYI9u0g68uWWm59sRAgbQdk0yRawMAbjqxRZrQ",
+        },
+        {
+          name: "Eastern Honey Bee",
+          scientificName: "Apis cerana",
+          conservationStatus: "N/A",
+          description:
+            "Eastern honey bees communicate to one another about good sources of nectar and pollen through the 'waggle dance'. A bee will perform this descriptive dance to other bees, after which they can interpret the dance and find their way to the food source. When they need to defend their nest from a wasp, they will surround the wasp and vibrate their muscles to generate heat, eventually killing the wasp via 'heat balling'.",
+          reference: "https://pictureinsect.com/wiki/Apis_cerana.html",
+          uri: "https://static.inaturalist.org/photos/2033079/medium.jpg",
+        },
+        {
+          name: "Weaver Ant",
+          scientificName: "Oecophylla smaragdina",
+          conservationStatus: "N/A",
+          description:
+            "The weaver ant can be found in silk-woven nests in the foliage of Southeast Asia and Oceania. These ants have a painful bite and prey on other small insects. Larvae have many uses for local regions, including being a popular fishing bait and a good choice of bird food.",
+          reference: "https://pictureinsect.com/wiki/Oecophylla_smaragdina.html",
+          uri: "https://upload.wikimedia.org/wikipedia/commons/5/55/Red_Weaver_Ant%2C_Oecophylla_smaragdina.jpg",
+        },
+        {
+          name: "Striped Tiger",
+          scientificName: "Danaus genutia",
+          conservationStatus: "N/A",
+          description:
+            "Native to a myriad of habitats across Asia and Australia, striped tiger displays a striking tawny coloration punctuated by black veins and bordered with a black margin sprinkled with white dots. As it matures from a persistent caterpillar with notable tentacles, this creature undergoes a metamorphosis into an adult with a wingspan that captures the fascination of onlookers. Possessing tarsi to taste the substrates it lands upon, striped tiger exhibits a unique sensory adaptation, allowing it to skillfully locate nourishment which predominantly consists of nectar from a diverse array of flowering plants.",
+          reference: "https://pictureinsect.com/wiki/Danaus_genutia.html",
+          uri: "https://inaturalist-open-data.s3.amazonaws.com/photos/219936/large.jpg",
+        },
+        {
+          name: "Rustic",
+          scientificName: "Cupha erymanthis",
+          conservationStatus: "N/A",
+          description:
+            "With wings cloaked in a tapestry of warm oranges and browns, rustic flutters through its habitat, often found in proximity to its host plants. These winged creatures undergo a striking metamorphosis, emerging from chrysalises as distinctly patterned adults after spending an initial phase as voracious leaf-eaters. They contribute to pollination during their nectar-seeking flights, inadvertently transferring pollen as they thrive in a symbiotic relationship with their floral environment.",
+          reference: "https://pictureinsect.com/wiki/Cupha_erymanthis.html",
+          uri: "https://baliwildlife.com/wp-content/uploads/2021/09/IMG_0614.jpg",
+        },
+      ],
   };
 
   const [activeIndex, setActiveIndex] = useState(0);
