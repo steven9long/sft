@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { router } from 'expo-router';
 
@@ -18,9 +18,10 @@ const TaiLongWan = () => {
       <Text style={styles.subtitle}>Sai Kung, Hong Kong</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.difficulty}>Difficulty: </Text>
-        <Ionicons name="star" size={16} color="#4CAF50" />
-        <Ionicons name="star" size={16} color="#4CAF50" />
-        <Text style={styles.points}>+ 🌳15,000</Text>
+        <Ionicons name="star" size={16} color="#85A98F" />
+        <Ionicons name="star" size={16} color="#85A98F" />
+        <FontAwesome name="tree" size={20} color="#85A98F" />
+        <Text style={styles.points}>+ 15,000</Text>
       </View>
       <Text style={styles.description}>
         With its white-sand beaches, crystal clear waters, and surrounding lush mountains, Tai Long Wan is nothing short of paradise in a city synonymous with tall skyscrapers.
@@ -36,6 +37,7 @@ const TaiLongWan = () => {
       </View>
       <Text style={styles.duration}>30 min</Text>
       <TouchableOpacity style={styles.directionsButton} onPress={() => router.push('/Directions')}>
+        <MaterialCommunityIcons name="directions-fork" size={16} color="#fff" style={{ marginRight: 8 }} />
         <Text style={styles.directionsText}>Get Directions</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -71,12 +73,12 @@ const styles = StyleSheet.create({
   },
   difficulty: {
     fontSize: 16,
-    color: '#4CAF50',
+    color: '#85A98F',
     marginRight: 8,
   },
   points: {
     fontSize: 16,
-    color: '#4CAF50',
+    color: '#85A98F',
     marginLeft: 8,
   },
   description: {
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
   },
   rating: {
     fontSize: 16,
-    color: '#4CAF50',
+    color: '#85A98F',
     marginRight: 8,
   },
   readReviews: {
@@ -124,10 +126,12 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   directionsButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#85A98F',
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   directionsText: {
     fontSize: 16,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { router } from 'expo-router';
 
@@ -18,8 +18,9 @@ const KowloonPark = () => {
       <Text style={styles.subtitle}>Tsim Sha Tsui, Hong Kong</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.difficulty}>Difficulty: </Text>
-        <Ionicons name="star" size={16} color="#4CAF50" />
-        <Text style={styles.points}>+ 🌳15,000</Text>
+        <Ionicons name="star" size={16} color="#85A98F" />
+        <FontAwesome name="tree" size={20} color="#85A98F" />
+        <Text style={styles.points}>+ 15,000</Text>
       </View>
       <Text style={styles.description}>
         In the 1830s, some westerners found that Victoria Harbour was an ideal anchorage place for vessels. At that time, the site of the later Kowloon Park was an important military base over-looking the Harbour. In 1861, the British occupied Kowloon peninsula and named the base as Whitfield Barracks.
@@ -35,8 +36,9 @@ const KowloonPark = () => {
       </View>
       <Text style={styles.duration}>30 min</Text>
       <TouchableOpacity style={styles.directionsButton} onPress={() => router.push('/Directions')}>
-        <Text style={styles.directionsText}>Get Directions</Text>
-      </TouchableOpacity>
+              <MaterialCommunityIcons name="directions-fork" size={16} color="#fff" style={{ marginRight: 8 }} />
+              <Text style={styles.directionsText}>Get Directions</Text>
+            </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -70,12 +72,12 @@ const styles = StyleSheet.create({
   },
   difficulty: {
     fontSize: 16,
-    color: '#4CAF50',
+    color: '#85A98F',
     marginRight: 8,
   },
   points: {
     fontSize: 16,
-    color: '#4CAF50',
+    color: '#85A98F',
     marginLeft: 8,
   },
   description: {
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
   },
   rating: {
     fontSize: 16,
-    color: '#4CAF50',
+    color: '#85A98F',
     marginRight: 8,
   },
   readReviews: {
@@ -123,10 +125,12 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   directionsButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#85A98F',
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   directionsText: {
     fontSize: 16,

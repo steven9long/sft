@@ -33,7 +33,10 @@ export default function HomeScreen() {
 
       {/* Points and Redeem */}
       <View style={styles.pointsContainer}>
-        <Text style={styles.pointsText}>🌳 18,000</Text>
+        <View style={styles.points}>
+          <FontAwesome name="tree" size={20} color="#85A98F" />
+          <Text style={styles.pointsText}>18,000</Text>
+        </View>
         <TouchableOpacity>
           <Text style={styles.redeemText}>🎁 Redeem</Text>
         </TouchableOpacity>
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
   },
   aiText: {
     fontSize: 14,
-    color: "green",
+    color: "#85A98F",
   },
   pointsContainer: {
     flexDirection: "row",
@@ -105,11 +108,11 @@ const styles = StyleSheet.create({
   pointsText: {
     marginLeft: 5,
     fontSize: 14,
-    color: "green",
+    color: "#85A98F",
   },
   redeemText: {
     fontSize: 14,
-    color: "green",
+    color: "#85A98F",
   },
   searchBar: {
     flexDirection: "row",
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   categoryButtonActive: {
-    backgroundColor: "green",
+    backgroundColor: "#85A98F",
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 20,
@@ -196,7 +199,7 @@ const styles = StyleSheet.create({
   ratingText: {
     marginLeft: 5,
     fontSize: 14,
-    color: "green",
+    color: "#85A98F",
   },
   weatherContainer: {
     flexDirection: "row",

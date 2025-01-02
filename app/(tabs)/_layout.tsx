@@ -3,13 +3,14 @@ import React from 'react';
 import { Platform, View, StyleSheet } from 'react-native';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { Colors } from '@/constants/Colors';
+import { Feather, Foundation, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   return (
     <View style={{ flex: 1 }}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: '#4CAF50', // Green when active
+          tabBarActiveTintColor: "#85A98F", // Green when active
           tabBarInactiveTintColor: '#A1A1A1', // Gray when inactive
           headerShown: false,
           tabBarStyle: styles.tabBar,
@@ -20,8 +21,12 @@ export default function TabLayout() {
           name="index"
           options={{
             title: '',
-            tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="house.fill" color={color} />
+            tabBarIcon: ({ color, focused }) => (
+              focused ? (
+          <MaterialCommunityIcons name="home-variant" size={28} color={color} />
+              ) : (
+          <MaterialCommunityIcons name="home-variant-outline" size={28} color={color} />
+              )
             ),
           }}
         />
@@ -30,8 +35,12 @@ export default function TabLayout() {
           name="Itineraries"
           options={{
             title: '',
-            tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="location.fill" color={color} />
+            tabBarIcon: ({ color, focused }) => (
+              focused ? (
+          <MaterialCommunityIcons name="map-marker" size={28} color={color} />
+              ) : (
+          <MaterialCommunityIcons name="map-marker-outline" size={28} color={color} />
+              )
             ),
           }}
         />
@@ -40,8 +49,12 @@ export default function TabLayout() {
           name="forum"
           options={{
             title: '',
-            tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="text.bubble.fill" color={color} />
+            tabBarIcon: ({ color, focused }) => (
+              focused ? (
+          <MaterialCommunityIcons name="comment-text-multiple" size={28} color={color} />
+              ) : (
+          <MaterialCommunityIcons name="comment-text-multiple-outline" size={28} color={color} />
+              )
             ),
           }}
         />
@@ -50,8 +63,12 @@ export default function TabLayout() {
           name="collection"
           options={{
             title: '',
-            tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="bookmark.fill" color={color} />
+            tabBarIcon: ({ color, focused }) => (
+              focused ? (
+                <MaterialCommunityIcons name="book-open-page-variant" size={28} color={color} />
+              ) : (
+                <MaterialCommunityIcons name="book-open-page-variant-outline" size={28} color={color} />
+              )
             ),
           }}/>
           </Tabs>

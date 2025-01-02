@@ -78,7 +78,7 @@ interface Place {
   type: string | string[];
 }
 
-const PlaceCard = ({ item }: { item: Place }) => {
+export const PlaceCard = ({ item }: { item: Place }) => {
   const renderType = (type: string | string[]) => {
     if (Array.isArray(type)) {
       return type.map((t, index) => (
@@ -123,12 +123,7 @@ const PlaceCard = ({ item }: { item: Place }) => {
 export default function AllPlacesScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="chevron-back" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>All Places</Text>
-      </View>
+     
       <FlatList
         data={placesData}
         renderItem={({ item }) => <PlaceCard item={item} />}
