@@ -80,9 +80,7 @@ const styles = StyleSheet.create({
   tabBar: {
     position: 'absolute',
     backgroundColor: '#FFFFFF', // White background
-    height: 80,
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+    height: 65,
     shadowColor: '#000000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: -2 },

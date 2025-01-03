@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 interface PlaceCardProps {
   imageUri: string;
@@ -23,11 +23,17 @@ export const PlaceCard: React.FC<PlaceCardProps> = ({
     <TouchableOpacity onPress={onPress} style={styles.placeCard}>
       <Image source={{ uri: imageUri }} style={styles.placeImage} />
       <Text style={styles.placeTitle}>{title}</Text>
-      <Text style={styles.placeSubtitle}>{subtitle}</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <Ionicons name="location-outline" size={16} color="#666" />
+        <Text style={styles.placeSubtitle}>{subtitle}</Text>
+      </View>
       <View style={styles.placeFooter}>
-        <Text style={styles.pointsText}>{points}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <FontAwesome name="tree" size={16} color="#85A98F" />
+          <Text style={styles.pointsText}>+{points}</Text>
+        </View>
         <View style={styles.rating}>
-          <FontAwesome name="star" size={16} color="green" />
+          <FontAwesome name="star" size={16} color="#436850" />
           <Text style={styles.ratingText}>{rating}</Text>
         </View>
       </View>
@@ -51,6 +57,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 100,
     borderRadius: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
   },
   placeTitle: {
     fontSize: 16,
@@ -69,7 +80,7 @@ const styles = StyleSheet.create({
   },
   pointsText: {
     fontSize: 14,
-    color: 'green',
+    color: '#85A98F',
   },
   rating: {
     flexDirection: 'row',
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
   ratingText: {
     marginLeft: 5,
     fontSize: 14,
-    color: 'green',
+    color: '#436850',
   },
 });
 

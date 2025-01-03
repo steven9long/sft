@@ -7,11 +7,14 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Modal,
 } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import { MasonryFlashList } from "@shopify/flash-list"; // Updated import
 import { Ionicons } from "@expo/vector-icons";
 import PopUpSpecie from "../../components/PopUpSpecie";
+import { FontAwesome5, FontAwesome6, FontAwesome, AntDesign } from "@expo/vector-icons"; // Import FontAwesome and AntDesign
+import * as ImagePicker from 'expo-image-picker'; // Import ImagePicker
 
 const { width } = Dimensions.get("window");
 
@@ -243,6 +246,7 @@ export default function Collection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [infoModalVisible, setInfoModalVisible] = useState(false); // State for info modal
 
   const handlePress = (item: any) => {
     setSelectedItem(item);
@@ -253,7 +257,11 @@ const renderCarousel = (title: string, items: { name: string; uri: string }[], i
     console.log("items", items);
     return (
         <View style={styles.carouselContainer}>
-            <Text style={styles.carouselTitle}>{title}</Text>
+            <View style={styles.carouselTitleContainer}>
+                <FontAwesome name="chevron-left" size={20} color="#000" />
+                <Text style={styles.carouselTitle}>{title}</Text>
+                <FontAwesome name="chevron-right" size={20} color="#000" />
+            </View>
             <MasonryFlashList
                 data={items}
                 numColumns={3}
@@ -269,6 +277,15 @@ const renderCarousel = (title: string, items: { name: string; uri: string }[], i
     );
 };
 
+const openCamera = async () => {
+  const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+  if (permissionResult.granted === false) {
+    alert("Permission to access camera is required!");
+    return;
+  }
+  await ImagePicker.launchCameraAsync();
+};
+
   return (
     <>
       <View style={styles.container}>
@@ -276,7 +293,10 @@ const renderCarousel = (title: string, items: { name: string; uri: string }[], i
           <Text style={styles.headerHighlight}>20</Text> newly species so far!
         </Text>
         <View style={styles.uploadContainer}>
-          <Text style={styles.uploadText}>UPLOAD TO DATABASE</Text>
+          <TouchableOpacity onPress={() => setInfoModalVisible(true)} style={styles.uploadButton}>
+            <Text style={styles.uploadText}>UPLOAD TO DATABASE</Text>
+            <AntDesign name="questioncircle" size={20} color="#85A98F" />
+          </TouchableOpacity>
           <Switch />
         </View>
 
@@ -292,10 +312,10 @@ const renderCarousel = (title: string, items: { name: string; uri: string }[], i
 
         <View style={styles.fabContainer}>
           <TouchableOpacity style={styles.fabButton}>
-            <Ionicons name="map" size={28} color="#fff" />
+            <FontAwesome6 name="map-location-dot" size={28} color="#436850" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.fabButton}>
-            <Ionicons name="camera" size={28} color="#fff" />
+          <TouchableOpacity style={styles.fabButton} onPress={openCamera}>
+            <FontAwesome5 name="camera-retro" size={28} color="#436850" />
           </TouchableOpacity>
         </View>
       </View>
@@ -304,6 +324,22 @@ const renderCarousel = (title: string, items: { name: string; uri: string }[], i
         item={selectedItem}
         onClose={() => setModalVisible(false)}
       />
+      <Modal
+        visible={infoModalVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setInfoModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Upload to Database</Text>
+            <Text style={styles.modalText}>This feature allows you to upload new species data to the database. Ensure all information is accurate before uploading.</Text>
+            <TouchableOpacity onPress={() => setInfoModalVisible(false)} style={styles.closeButton}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </>
   );
 }
@@ -348,7 +384,7 @@ const styles = StyleSheet.create({
   headerHighlight: {
     fontSize: 32,
     fontWeight: "bold",
-    color: "#4CAF50",
+    color: "#85A98F",
   },
   uploadContainer: {
     flexDirection: "row",
@@ -359,18 +395,28 @@ const styles = StyleSheet.create({
   uploadText: {
     fontSize: 14,
     fontWeight: "500",
-    color: "#4CAF50",
+    color: "#85A98F",
     marginRight: 8,
+  },
+  uploadButton: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   carouselContainer: {
     marginVertical: 16,
     height: 2000, // Added height for the carousel container
   },
+  carouselTitleContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 8,
+  },
   carouselTitle: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 8,
+    marginHorizontal: 8,
   },
   image: {
     width: "93%", // Ensures the image takes full column width
@@ -384,16 +430,49 @@ const styles = StyleSheet.create({
   },
   fabContainer: {
     position: "absolute",
-    bottom: 16,
+    bottom: 50, // Increased from 16 to 32 to make the buttons higher
     right: 16,
   },
   fabButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#85A98F",
     width: 56,
     height: 56,
     borderRadius: 28,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 16,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  modalText: {
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  closeButton: {
+    backgroundColor: "#85A98F",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    color: "#fff",
+    fontSize: 16,
   },
 });

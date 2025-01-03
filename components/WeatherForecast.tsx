@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 14,
     color: "#666",
-    textAlign: "center",
+    textAlign: "436850",
   },
   dataRow: {
     flexDirection: "row",
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   dataBox: {
     height: 25,
-    borderColor: "#90EE90",
+    borderColor: "#85A98F",
     borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 8,

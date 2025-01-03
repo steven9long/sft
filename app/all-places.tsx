@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, Image, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
-const getRandomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomNumber = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 const placesData = [
   {
@@ -105,16 +108,17 @@ export const PlaceCard = ({ item }: { item: Place }) => {
             <Text style={styles.locationText}>{item.location}</Text>
           </View>
           <View style={styles.statsContainer}>
-            <Ionicons name="star" size={16} color="#4CAF50" />
-            <Text style={styles.rating}>{item.rating}</Text>
-            <Text style={styles.reviewCount}>{item.reviews} Reviews</Text>
-            <Text style={styles.visitors}>+ 🌳{item.visitors.toLocaleString()}</Text>
+            <Ionicons name="star" size={10} color="#85A98F" />
+            <Text style={styles.rating}>{item.rating.toFixed(1)}</Text>
+            <Text style={styles.reviewCount}>| {item.reviews} Reviews</Text>
+            <FontAwesome name="tree" size={10} color="#85A98F" style={{ marginLeft: 8 }} />
+            <Text style={styles.visitors}>+ {item.visitors.toLocaleString()}</Text>
           </View>
         </View>
         <View style={styles.typeContainer}>{renderType(item.type)}</View>
       </View>
       <View style={styles.arrowContainer}>
-        <Ionicons name="chevron-forward" size={24} color="#666" />
+        <Ionicons name="chevron-forward" size={24} color="#85A98F" />
       </View>
     </TouchableOpacity>
   );
@@ -123,7 +127,6 @@ export const PlaceCard = ({ item }: { item: Place }) => {
 export default function AllPlacesScreen() {
   return (
     <SafeAreaView style={styles.container}>
-     
       <FlatList
         data={placesData}
         renderItem={({ item }) => <PlaceCard item={item} />}
@@ -135,15 +138,10 @@ export default function AllPlacesScreen() {
 }
 
 const styles: { [key: string]: any } = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
-  headerTitle: { fontSize: 20, fontWeight: 'bold', marginLeft: 16 },
   card: {
     flexDirection: 'row',
     padding: 16,
@@ -157,16 +155,52 @@ const styles: { [key: string]: any } = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-  placeImage: { width: 80, height: 80, borderRadius: 8 },
-  cardContent: { flex: 1, marginLeft: 16, justifyContent: 'space-between' },
-  placeName: { fontSize: 18, fontWeight: 'bold' },
-  locationContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 4 },
-  locationText: { color: '#666', marginLeft: 4 },
-  statsContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 4 },
-  rating: { marginLeft: 4, fontWeight: 'bold' },
-  reviewCount: { color: '#666', marginLeft: 8 },
-  visitors: { color: '#4CAF50', marginLeft: 8 },
-  typeContainer: { flexDirection: 'row', marginTop: 8 },
+  placeImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 8,
+  },
+  cardContent: {
+    flex: 1,
+    marginLeft: 12,
+    justifyContent: 'space-between',
+  },
+  placeName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  locationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  locationText: {
+    color: '#666',
+    marginLeft: 4,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  rating: {
+    marginLeft: 4,
+    fontWeight: 'bold',
+    color: '#85A98F',
+  },
+  reviewCount: {
+    color: '#666',
+    marginLeft: 8,
+  },
+  visitors: {
+    color: '#85A98F',
+    marginLeft: 4,
+  },
+  typeContainer: {
+    flexDirection: 'row',
+    marginTop: 8,
+  },
   typeTag: {
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -177,6 +211,11 @@ const styles: { [key: string]: any } = StyleSheet.create({
   typeTag_Park: { backgroundColor: '#E8F5E9' },
   typeTag_Mountain: { backgroundColor: '#EDE7F6' },
   typeTag_Ocean: { backgroundColor: '#E0F7FA' },
-  typeText: { fontSize: 12, color: '#4CAF50' },
-  arrowContainer: { justifyContent: 'center' },
+  typeText: {
+    fontSize: 12,
+    color: '#333',
+  },
+  arrowContainer: {
+    justifyContent: 'center',
+  },
 });

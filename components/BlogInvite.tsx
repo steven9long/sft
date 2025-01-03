@@ -56,17 +56,13 @@ const BlogInvite = () => (
       {/* Action Buttons */}
       <View style={styles.actionButtons}>
         <TouchableOpacity style={styles.acceptButton}>
-          <Text style={styles.buttonText}>ACCEPT</Text>
+          <Text style={styles.acceptButtonText}>ACCEPT</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.declineButton}>
-          <Text style={styles.buttonText}>DECLINE</Text>
+          <Text style={styles.declineButtonText}>DECLINE</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Favorite Icon */}
-      <TouchableOpacity style={styles.favoriteIcon}>
-        <Text>❤️</Text>
-      </TouchableOpacity>
     </TouchableOpacity>
   </View>
 );
@@ -97,7 +93,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   createPostButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#436850",
     marginLeft: 8,
     borderRadius: 8,
     paddingHorizontal: 16,
@@ -109,7 +105,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   achievementBanner: {
-    backgroundColor: "#DFF6E1",
+    backgroundColor: "#85B266",
     borderRadius: 8,
     padding: 12,
     flexDirection: "row",
@@ -118,18 +114,20 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   achievementText: {
-    color: "#388E3C",
+    color: "white",
     fontSize: 14,
     fontWeight: "600",
   },
   checkButton: {
-    backgroundColor: "#4CAF50",
+    borderWidth: 1, 
+    backgroundColor: "#FFFFFF", 
+    borderColor: "#5A6C57", 
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
   checkButtonText: {
-    color: "#FFFFFF",
+    color: "#5A6C57", 
     fontSize: 12,
     fontWeight: "600",
   },
@@ -137,7 +135,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 12,
     padding: 16,
-    marginBottom: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -162,7 +159,7 @@ const styles = StyleSheet.create({
   },
   eventCard: {
     flexDirection: "row",
-    backgroundColor: "#F1F8F6",
+    backgroundColor: "#85A98F", // Updated to #85A98F
     borderRadius: 8,
     padding: 12,
     marginBottom: 12,
@@ -218,19 +215,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   acceptButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#5A6C57", // Updated background color
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 24,
+  },
+  acceptButtonText: {
+    color: "#FFFFFF", // Updated text color
+    fontSize: 14,
+    fontWeight: "600",
+    textAlign: "center",
   },
   declineButton: {
-    backgroundColor: "#F44336",
+    borderWidth: 1, // Added border width
+    borderColor: "#5A6C57", // Updated border color
+    backgroundColor: "#FFFFFF", // Updated background color
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 24,
   },
-  buttonText: {
-    color: "#FFFFFF",
+  declineButtonText: {
+    color: "#5A6C57", // Updated text color
     fontSize: 14,
     fontWeight: "600",
     textAlign: "center",

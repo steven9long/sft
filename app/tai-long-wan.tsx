@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome6, Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { router } from 'expo-router';
 
@@ -20,8 +20,10 @@ const TaiLongWan = () => {
         <Text style={styles.difficulty}>Difficulty: </Text>
         <Ionicons name="star" size={16} color="#85A98F" />
         <Ionicons name="star" size={16} color="#85A98F" />
-        <FontAwesome name="tree" size={20} color="#85A98F" />
-        <Text style={styles.points}>+ 15,000</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 'auto' }}>
+          <FontAwesome name="tree" size={20} color="#85A98F" />
+          <Text style={styles.points}>+ 15,000</Text>
+        </View>
       </View>
       <Text style={styles.description}>
         With its white-sand beaches, crystal clear waters, and surrounding lush mountains, Tai Long Wan is nothing short of paradise in a city synonymous with tall skyscrapers.
@@ -29,13 +31,21 @@ const TaiLongWan = () => {
       <TouchableOpacity onPress={() => Linking.openURL('https://droneandslr.com/travel-blog/hong-kong/tai-long-wan-sai-kung/')}>
         <Text style={styles.link}>https://droneandslr.com/travel-blog/hong-kong/tai-long-wan-sai-kung/</Text>
       </TouchableOpacity>
-      <View style={styles.ratingContainer}>
-        <Text style={styles.rating}>4.0</Text>
-        <TouchableOpacity>
-          <Text style={styles.readReviews}>Read Reviews</Text>
+      {/* Rating and Info */}
+      <View style={styles.infoRow}>
+        <View style={styles.ratingContainer}>
+          <Ionicons name="star" size={16} color="#85A98F" />
+          <Text style={styles.rating}>4.0</Text>
+        </View>
+        <TouchableOpacity style={styles.reviewButton}>
+          <Octicons name="comment-discussion" size={16} color="#85A98F" />
+          <Text style={styles.reviewText}>Read Reviews</Text>
         </TouchableOpacity>
+        <View style={styles.routeContainer}>
+          <FontAwesome6 name="route" size={16} color="#85A98F" />
+          <Text style={styles.duration}>30 min</Text>
+        </View>
       </View>
-      <Text style={styles.duration}>30 min</Text>
       <TouchableOpacity style={styles.directionsButton} onPress={() => router.push('/Directions')}>
         <MaterialCommunityIcons name="directions-fork" size={16} color="#fff" style={{ marginRight: 8 }} />
         <Text style={styles.directionsText}>Get Directions</Text>
@@ -45,6 +55,43 @@ const TaiLongWan = () => {
 };
 
 const styles = StyleSheet.create({
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rating: {
+    fontSize: 16,
+    color: '#85A98F',
+    marginLeft: 4,
+  },
+  reviewButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#D3F1DF',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 16,
+  },
+  reviewText: {
+    fontSize: 14,
+    color: '#85A98F',
+    marginLeft: 4,
+  },
+  routeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  duration: {
+    fontSize: 14,
+    color: '#666',
+    marginLeft: 4,
+  },
   container: {
     flex: 1,
     padding: 16,
@@ -92,24 +139,9 @@ const styles = StyleSheet.create({
     color: '#1E90FF',
     marginBottom: 16,
   },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  rating: {
-    fontSize: 16,
-    color: '#85A98F',
-    marginRight: 8,
-  },
   readReviews: {
     fontSize: 14,
     color: '#1E90FF',
-  },
-  duration: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 16,
   },
   photosTitle: {
     fontSize: 16,

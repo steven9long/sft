@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Carousel from 'react-native-reanimated-carousel';
 
 const itineraries = [
   {
@@ -58,19 +59,11 @@ export default function DiscoverItinerariesScreen() {
           key={index}
           name="ellipse"
           size={10}
-          color={index < level ? '#4CAF50' : '#E0E0E0'}
+          color={index < level ? '#85A98F' : '#E0E0E0'}
           style={{ marginHorizontal: 2 }}
         />
       ));
     return <View style={styles.difficultyContainer}>{dots}</View>;
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? itineraries.length - 1 : prevIndex - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === itineraries.length - 1 ? 0 : prevIndex + 1));
   };
 
   const currentItinerary = itineraries[currentIndex];
@@ -80,21 +73,19 @@ export default function DiscoverItinerariesScreen() {
       <ScrollView>
         
         <View style={styles.content}>
-          <Text style={styles.subtitle}>As you like <Ionicons name="bicycle" size={16} color="#4CAF50" /> Cycling...</Text>
+          <Text style={styles.subtitle}>As you like <Ionicons name="bicycle" size={16} color="#85A98F" /> Cycling...</Text>
 
           <View style={styles.imageContainer}>
-            <Image source={currentItinerary.image} style={styles.image} />
-            <View style={styles.carouselControls}>
-              <TouchableOpacity onPress={handlePrev} style={styles.carouselButton}>
-                <View style={styles.touchArea}>
-                  <Ionicons name="chevron-back-circle" size={48} color="#000" />
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handleNext} style={styles.carouselButton}>
-                <View style={styles.touchArea}>
-                  <Ionicons name="chevron-forward-circle" size={48} color="#000" />
-                </View>
-              </TouchableOpacity>
+            <Carousel
+              width={300}
+              height={200}
+              data={itineraries}
+              renderItem={({ item }) => <Image source={item.image} style={styles.image} />}
+              onSnapToItem={(index) => setCurrentIndex(index)}
+            />
+            <View style={styles.carouselPrompts}>
+              <Text style={styles.carouselPrompt}>&lt;</Text>
+              <Text style={styles.carouselPrompt}>&gt;</Text>
             </View>
           </View>
 
@@ -121,7 +112,13 @@ export default function DiscoverItinerariesScreen() {
 
           <View style={styles.savedByContainer}>
             {currentItinerary.savedBy.map((person, index) => (
-              <Ionicons key={index} name="person-circle-outline" size={24} color="#666" style={styles.savedByAvatar} />
+              <Ionicons
+                key={index}
+                name="person-circle-outline"
+                size={24}
+                color="#666"
+                style={[styles.savedByAvatar, { marginLeft: index === 0 ? 0 : -8 }]}
+              />
             ))}
             <Text style={styles.savedByText}>
               {currentItinerary.savedBy.join(', ')} have saved this plan
@@ -145,7 +142,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: { fontSize: 20, fontWeight: 'bold' },
   content: { padding: 16 },
-  subtitle: { fontSize: 16, color: '#4CAF50', fontWeight: '600', marginBottom: 8 },
+  subtitle: { fontSize: 16, color: '#85A98F', fontWeight: '600', marginBottom: 8 },
   imageContainer: {
     position: 'relative',
     alignItems: 'center',
@@ -162,7 +159,7 @@ const styles = StyleSheet.create({
   savedByContainer: { flexDirection: 'row', alignItems: 'center', marginTop: 16 },
   savedByAvatar: { marginRight: 8 },
   savedByText: { fontSize: 14, color: '#666' },
-  carouselControls: {
+  carouselPrompts: {
     position: 'absolute',
     top: '50%',
     left: 0,
@@ -171,11 +168,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 16,
   },
-  carouselButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    borderRadius: 16,
-  },
-  touchArea: {
-    padding: 16,
+  carouselPrompt: {
+    fontSize: 24,
+    color: '#000',
   },
 });

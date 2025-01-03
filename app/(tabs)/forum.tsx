@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons'; // For the search icon
+import { Ionicons } from '@expo/vector-icons'; // For the chat bubble icon
+import { MaterialCommunityIcons } from '@expo/vector-icons'; // For the bell icon
 import BlogInvite from '../../components/BlogInvite';
 import BlogPost from '../../components/BlogPost';
 import EventCard from '../../components/EventCard';
@@ -33,6 +36,18 @@ const Forum = () => {
 
   return (
     <View style={styles.container}>
+      {/* Top Bar with Search and Icons */}
+      <View style={styles.topBar}>
+        <FontAwesome name="search" size={24} color="#ADBC9F" style={styles.icon} />
+        <TextInput
+          placeholder="Search"
+          placeholderTextColor="#ADBC9F"
+          style={styles.searchInput}
+        />
+        <Ionicons name="chatbubble-ellipses" size={24} color="#ADBC9F" style={styles.icon} />
+        <MaterialCommunityIcons name="bell-badge" size={24} color="#ADBC9F" style={styles.icon} />
+      </View>
+
       {/* Header for toggling between Blog and Events */}
       <View style={styles.header}>
         <TouchableOpacity
@@ -60,6 +75,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+  },
+  topBar: {
+    paddingTop: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  searchInput: {
+    flex: 1,
+    height: 40,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    marginHorizontal: 10,
+    color: '#333',
+  },
+  icon: {
+    marginHorizontal: 5,
   },
   header: {
     flexDirection: 'row',
@@ -91,155 +128,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 15,
-  },
-  post: {
-    backgroundColor: '#e5ffe5',
-    padding: 15,
-    marginBottom: 15,
-    borderRadius: 10,
-  },
-  postText: {
-    fontSize: 16,
-    color: '#2a5d2a',
-  },
-  eventInvite: {
-    backgroundColor: '#fff',
-    padding: 15,
-    marginBottom: 15,
-    borderRadius: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  inviteHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 10,
-  },
-  inviteText: {
-    fontSize: 16,
-    color: '#333',
-    flex: 1,
-  },
-  eventCard: {
-    flexDirection: 'row',
-    backgroundColor: '#f9f9f9',
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 15,
-  },
-  eventDateContainer: {
-    backgroundColor: '#d0e8d0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    borderRadius: 10,
-    marginRight: 10,
-  },
-  eventDate: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2a5d2a',
-  },
-  eventDay: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#2a5d2a',
-  },
-  eventDetails: {
-    flex: 1,
-  },
-  eventTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  eventSubtitle: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 10,
-  },
-  tagContainer: {
-    flexDirection: 'row',
-  },
-  tag: {
-    backgroundColor: '#d0e8d0',
-    color: '#2a5d2a',
-    fontSize: 12,
-    padding: 5,
-    borderRadius: 5,
-    marginRight: 5,
-  },
-  actionButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  acceptButton: {
-    backgroundColor: '#2a5d2a',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-  },eventTags: {
-    fontSize: 14,
-    color: '#666',
-  },
-  declineButton: {
-    backgroundColor: '#d32a2a',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  favoriteIcon: {
-    position: 'absolute',
-    right: 15,
-    bottom: 15,
-    backgroundColor: '#fff',
-    borderRadius: 25,
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  blogPost: {
-    backgroundColor: '#fff',
-    padding: 15,
-    marginBottom: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-  blogText: {
-    fontSize: 16,
-    color: '#333',
-    marginBottom: 10,
-  },
-  image: {
-    width: '100%',
-    height: 200,
-    borderRadius: 10,
-    marginBottom: 10,
-  },
-  stats: {
-    fontSize: 14,
-    color: '#666',
   },
 });
 

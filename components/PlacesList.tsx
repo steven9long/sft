@@ -21,7 +21,7 @@ export const PlacesList = () => {
       imageUri: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRPJRXldwNs9_qd1rh1X0ymUHPkN36jnzHiC6ULHPI0ttUfUNT2VDDMo2qKfsaHltRoDADOuoVUPL6bnlqI235X00HOIPwaevU_rEdgGw",
       title: "Kowloon Park",
       subtitle: "Tsim Sha Tsui, Hong K",
-      points: "+ 🌳10,000",
+      points: " 10,000",
       rating: "4.6",
       categories: ["Parks", "Historical"],
     },
@@ -29,7 +29,7 @@ export const PlacesList = () => {
       imageUri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTT3m33ZWK8oL30U9kUlzAbrqreM9UStFMhoIGYhOXT-V-vBImTQj_or8xeJXBCud2UxKAUvQzR3DuZCOPRMtDRTe9qyZSBbTAlrEiXVPg",
       title: "Tai Long Wan",
       subtitle: "Sai Kung, Hong K",
-      points: "+ 🌳15,000",
+      points: " 15,000",
       rating: "4.8",
       categories: ["Ocean"],
     },
@@ -98,7 +98,7 @@ export const PlacesList = () => {
 
 const styles = StyleSheet.create({
   placesScroll: {
-    marginVertical: 10,
+    marginVertical: 0,
   },
   categoryButtons: {
     flexDirection: "row",

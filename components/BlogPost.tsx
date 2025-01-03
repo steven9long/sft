@@ -6,8 +6,11 @@ import { AntDesign } from '@expo/vector-icons';
 interface BlogPostData {
   id: string;
   text: string;
-  imageUrl: string;
-  stats: string;
+  imageUrl?: string;
+  profileImageUrl: string;
+  stats?: string;
+  bgColor: string;
+  textColor: string;
 }
 
 const blogPosts: BlogPostData[] = [
@@ -15,13 +18,17 @@ const blogPosts: BlogPostData[] = [
     id: '1',
     text: 'Amanda has found a near threatened species at Tai Long Wan!',
     imageUrl: 'https://static.inaturalist.org/photos/2033092/large.jpg',
+    profileImageUrl: 'https://static.inaturalist.org/photos/2033092/large.jpg',
     stats: '651,324 Views | 36,654 Likes | 56 comments',
+    bgColor: '#FFFFFF',
+    textColor: '#5A6C57',
   },
   {
     id: '2',
     text: 'john20p has reduced over 2kg CO2 over 2 weeks!',
-    imageUrl: '',
-    stats: '523,102 Views | 24,103 Likes | 34 comments',
+    profileImageUrl: 'https://via.placeholder.com/56', // Replace with actual image URL
+    bgColor: '#5A6C57',
+    textColor: '#FFFFFF',
   },
 ];
 
@@ -33,10 +40,13 @@ const BlogPost: React.FC = () => {
   };
 
   const renderPost = ({ item }: { item: BlogPostData }) => (
-    <View style={styles.blogPost}>
-      <Text style={styles.blogText}>{item.text}</Text>
-      {item.imageUrl ? <Image source={{ uri: item.imageUrl }} style={styles.image} /> : null}
-      <Text style={styles.stats}>{item.stats}</Text>
+    <View style={[styles.blogPost, { backgroundColor: item.bgColor }]}>
+      <View style={styles.postHeader}>
+        <Image source={{ uri: item.profileImageUrl }} style={styles.profileImage} />
+        <Text style={[styles.blogText, { color: item.textColor }]}>{item.text}</Text>
+      </View>
+      {item.imageUrl && <Image source={{ uri: item.imageUrl }} style={styles.postImage} />}
+      {item.stats && <Text style={styles.stats}>{item.stats}</Text>}
       <TouchableOpacity
         style={styles.likeButton}
         onPress={() => toggleLike(item.id)}
@@ -65,7 +75,6 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   blogPost: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
@@ -76,13 +85,23 @@ const styles = StyleSheet.create({
     elevation: 2,
     position: 'relative',
   },
+  postHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  profileImage: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    marginRight: 12,
+  },
   blogText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333333',
-    marginBottom: 8,
+    flex: 1,
   },
-  image: {
+  postImage: {
     width: '100%',
     height: 150,
     borderRadius: 8,
@@ -91,12 +110,20 @@ const styles = StyleSheet.create({
   stats: {
     fontSize: 14,
     color: '#757575',
-    marginBottom: 8,
+    marginTop: 8,
   },
   likeButton: {
     position: 'absolute',
-    top: 16,
+    bottom: 16,
     right: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    padding: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
 });
 
